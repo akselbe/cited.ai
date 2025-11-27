@@ -1,792 +1,411 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NeuroRank | AI SEO Auditor</title>
-
-
-<!-- Fonts: Inter & JetBrains Mono -->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-
-<!-- React & ReactDOM -->
-
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-
-<!-- Babel for JSX -->
-
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-
-<!-- Tailwind CSS -->
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-
-<!-- Tailwind Configuration -->
-
-<script>
-
-tailwind.config = {
-
-theme: {
-
-extend: {
-
-colors: {
-
-cyber: {
-
-bg: '#0b0f19',
-
-dark: '#0f172a',
-
-light: '#1e293b',
-
-accent: '#10b981', // Emerald 500
-
-glow: '#34d399', // Emerald 400
-
-dim: '#94a3b8'
-
-}
-
-},
-
-fontFamily: {
-
-sans: ['Inter', 'sans-serif'],
-
-mono: ['JetBrains Mono', 'monospace'],
-
-},
-
-animation: {
-
-'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-
-'typewriter': 'typewriter 0.5s steps(40, end)',
-
-'fade-in': 'fadeIn 0.5s ease-out forwards',
-
-},
-
-keyframes: {
-
-fadeIn: {
-
-'0%': { opacity: '0', transform: 'translateY(10px)' },
-
-'100%': { opacity: '1', transform: 'translateY(0)' },
-
-}
-
-}
-
-}
-
-}
-
-}
-
-</script>
-
-
-
-<style>
-
-/* Custom Scrollbar for Terminal */
-
-.terminal-scroll::-webkit-scrollbar {
-
-width: 8px;
-
-}
-
-.terminal-scroll::-webkit-scrollbar-track {
-
-background: #0f172a;
-
-}
-
-.terminal-scroll::-webkit-scrollbar-thumb {
-
-background: #334155;
-
-border-radius: 4px;
-
-}
-
-.terminal-scroll::-webkit-scrollbar-thumb:hover {
-
-background: #475569;
-
-}
-
-
-
-/* Glassmorphism Utilities */
-
-.glass-panel {
-
-background: rgba(15, 23, 42, 0.6);
-
-backdrop-filter: blur(12px);
-
--webkit-backdrop-filter: blur(12px);
-
-border: 1px solid rgba(255, 255, 255, 0.08);
-
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-
-}
-
-
-
-/* Gradient Text */
-
-.text-gradient {
-
-background: linear-gradient(to right, #10b981, #2dd4bf);
-
--webkit-background-clip: text;
-
--webkit-text-fill-color: transparent;
-
-}
-
-
-body {
-
-background-color: #0b0f19;
-
-color: white;
-
-overflow-x: hidden;
-
-}
-
-
-
-/* Background Grid Animation */
-
-.bg-grid {
-
-background-size: 50px 50px;
-
-background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-
-linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-
-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cited.ai | 1-click LLM Visibility Analysis</title>
+    
+    <!-- Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#0b0f19',
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                            accent: '#10b981', // Emerald 500
+                            glow: '#34d399',   // Emerald 400
+                            dim: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'typewriter': 'typewriter 0.5s steps(40, end)',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar for Terminal */
+        .terminal-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #10b981, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        body {
+            background-color: #0b0f19;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Background Grid Animation */
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+    </style>
 </head>
-
 <body>
-
-<div id="root"></div>
-
-
-
-<script type="text/babel">
-
-const { useState, useEffect, useRef } = React;
-
-
-
-// --- Icons (Inline SVG for Zero Dependencies) ---
-
-const Icons = {
-
-Brain: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.97-3.284"/><path d="M17.97 14.716A4 4 0 0 1 16 18"/></svg>,
-
-CheckCircle: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
-
-Terminal: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>,
-
-Zap: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
-
-Search: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>,
-
-Lock: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-
-};
-
-
-
-// --- Constants ---
-
-const WEBHOOK_URL = "http://localhost:5678/webhook-test/ai-visibility-audit"; // Placeholder for backend integration
-
-const SIMULATION_LOGS = [
-
-"Initializing Neural Agents...",
-
-"Handshaking with target host...",
-
-"Resolving DNS...",
-
-"Fetching DOM structure...",
-
-"Parsing meta tags and semantic hierarchy...",
-
-"[AGENT-01] Analyzing keyword density...",
-
-"[AGENT-02] Checking backlink authority...",
-
-"[AGENT-03] Simulating GoogleBot crawl budget...",
-
-"Identifying 404 errors and broken redirects...",
-
-"Running Core Web Vitals simulation...",
-
-"Generating competitive gap analysis...",
-
-"Compiling insights...",
-
-"Rendering PDF report...",
-
-"Finalizing payload..."
-
-];
-
-
-
-// --- Components ---
-
-
-
-// 1. Audit Form Component
-
-const AuditForm = ({ onSubmit }) => {
-
-const [formData, setFormData] = useState({ url: '', keyword: '', email: '' });
-
-
-
-const handleSubmit = (e) => {
-
-e.preventDefault();
-
-onSubmit(formData);
-
-};
-
-
-
-return (
-
-<div className="animate-fade-in w-full">
-
-<div className="mb-8 text-center sm:text-left">
-
-<h2 className="text-2xl font-bold text-white mb-2">Initialize Audit</h2>
-
-<p className="text-cyber-dim text-sm">Enter target parameters for the AI swarm.</p>
-
-</div>
-
-
-<form onSubmit={handleSubmit} className="space-y-5">
-
-<div className="space-y-1">
-
-<label className="text-xs font-mono text-cyber-accent uppercase tracking-wider">Target URL</label>
-
-<div className="relative group">
-
-<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-dim group-focus-within:text-cyber-accent transition-colors">
-
-<Icons.Search />
-
-</div>
-
-<input
-
-required
-
-type="url"
-
-placeholder="https://example.com"
-
-className="w-full bg-cyber-dark/50 border border-white/10 text-white rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-cyber-accent focus:ring-1 focus:ring-cyber-accent transition-all placeholder-gray-600 font-mono text-sm"
-
-value={formData.url}
-
-onChange={(e) => setFormData({...formData, url: e.target.value})}
-
-/>
-
-</div>
-
-</div>
-
-
-
-<div className="space-y-1">
-
-<label className="text-xs font-mono text-cyber-accent uppercase tracking-wider">Focus Keyword</label>
-
-<div className="relative group">
-
-<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-dim group-focus-within:text-cyber-accent transition-colors">
-
-<Icons.Zap />
-
-</div>
-
-<input
-
-required
-
-type="text"
-
-placeholder="e.g. 'SaaS Analytics'"
-
-className="w-full bg-cyber-dark/50 border border-white/10 text-white rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-cyber-accent focus:ring-1 focus:ring-cyber-accent transition-all placeholder-gray-600 font-mono text-sm"
-
-value={formData.keyword}
-
-onChange={(e) => setFormData({...formData, keyword: e.target.value})}
-
-/>
-
-</div>
-
-</div>
-
-
-
-<div className="space-y-1">
-
-<label className="text-xs font-mono text-cyber-accent uppercase tracking-wider">Report Recipient</label>
-
-<div className="relative group">
-
-<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-dim group-focus-within:text-cyber-accent transition-colors">
-
-<Icons.Lock />
-
-</div>
-
-<input
-
-required
-
-type="email"
-
-placeholder="you@company.com"
-
-className="w-full bg-cyber-dark/50 border border-white/10 text-white rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-cyber-accent focus:ring-1 focus:ring-cyber-accent transition-all placeholder-gray-600 font-mono text-sm"
-
-value={formData.email}
-
-onChange={(e) => setFormData({...formData, email: e.target.value})}
-
-/>
-
-</div>
-
-</div>
-
-
-
-<button
-
-type="submit"
-
-className="w-full bg-cyber-accent hover:bg-cyber-glow text-cyber-dark font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2"
-
->
-
-<Icons.Terminal />
-
-<span>DEPLOY AGENTS</span>
-
-</button>
-
-</form>
-
-
-<p className="mt-4 text-xs text-center text-cyber-dim">
-
-Free tier limited to 1 scan per day.
-
-</p>
-
-</div>
-
-);
-
-};
-
-
-
-// 2. Terminal Simulation Component
-
-const TerminalSimulation = ({ onComplete }) => {
-
-const [logs, setLogs] = useState([]);
-
-const scrollRef = useRef(null);
-
-
-
-useEffect(() => {
-
-let currentIndex = 0;
-
-
-const intervalId = setInterval(() => {
-
-if (currentIndex < SIMULATION_LOGS.length) {
-
-setLogs(prev => [...prev, SIMULATION_LOGS[currentIndex]]);
-
-currentIndex++;
-
-} else {
-
-clearInterval(intervalId);
-
-setTimeout(onComplete, 1500); // Slight delay after logs finish
-
-}
-
-}, 500); // Speed of logs (500ms per line)
-
-
-
-return () => clearInterval(intervalId);
-
-}, [onComplete]);
-
-
-
-// Auto-scroll to bottom
-
-useEffect(() => {
-
-if (scrollRef.current) {
-
-scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-
-}
-
-}, [logs]);
-
-
-
-return (
-
-<div className="w-full h-full flex flex-col animate-fade-in">
-
-<div className="bg-gray-900 rounded-t-lg p-3 flex items-center gap-2 border-b border-gray-800">
-
-<div className="w-3 h-3 rounded-full bg-red-500"></div>
-
-<div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-
-<div className="w-3 h-3 rounded-full bg-green-500"></div>
-
-<span className="ml-2 text-xs text-gray-400 font-mono">neurorank_cli — v2.4.0</span>
-
-</div>
-
-<div
-
-ref={scrollRef}
-
-className="flex-1 bg-black/80 p-6 font-mono text-sm overflow-y-auto terminal-scroll rounded-b-lg border-x border-b border-white/10 h-[350px]"
-
->
-
-{logs.map((log, index) => (
-
-<div key={index} className="mb-2 text-cyber-accent/90">
-
-<span className="text-gray-500 mr-2">[{new Date().toLocaleTimeString()}]</span>
-
-<span className="mr-2">➜</span>
-
-{log}
-
-</div>
-
-))}
-
-<div className="animate-pulse-fast text-cyber-accent">_</div>
-
-</div>
-
-</div>
-
-);
-
-};
-
-
-
-// 3. Success Component
-
-const SuccessView = ({ email, onReset }) => {
-
-return (
-
-<div className="text-center animate-fade-in flex flex-col items-center justify-center h-full py-10">
-
-<div className="w-20 h-20 bg-cyber-accent/10 rounded-full flex items-center justify-center mb-6 border border-cyber-accent/50 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-
-<div className="text-cyber-accent">
-
-<Icons.CheckCircle />
-
-</div>
-
-</div>
-
-<h2 className="text-3xl font-bold text-white mb-2">Audit Complete</h2>
-
-<p className="text-cyber-dim mb-8 max-w-xs mx-auto">
-
-The comprehensive neural analysis has been compiled. The PDF report has been sent to <span className="text-cyber-accent font-mono">{email}</span>.
-
-</p>
-
-<button
-
-onClick={onReset}
-
-className="bg-transparent border border-white/20 hover:border-cyber-accent hover:text-cyber-accent text-white px-8 py-3 rounded-lg transition-all font-mono text-sm"
-
->
-
-SCAN ANOTHER SITE
-
-</button>
-
-</div>
-
-);
-
-};
-
-
-
-// --- Main App Component ---
-
-const App = () => {
-
-const [status, setStatus] = useState('idle'); // idle | scanning | complete
-
-const [data, setData] = useState(null);
-
-
-
-const handleStartScan = (formData) => {
-
-setData(formData);
-
-setStatus('scanning');
-
-
-// Mock Network Request logic if we had a real backend
-
-if (WEBHOOK_URL) {
-
-console.log("Sending data to webhook:", formData);
-
-}
-
-};
-
-
-
-const handleScanComplete = () => {
-
-setStatus('complete');
-
-};
-
-
-
-const handleReset = () => {
-
-setStatus('idle');
-
-setData(null);
-
-};
-
-
-
-return (
-
-<div className="min-h-screen relative flex items-center justify-center p-4 md:p-8">
-
-{/* Background Elements */}
-
-<div className="absolute inset-0 bg-grid z-0"></div>
-
-<div className="absolute top-0 left-1/4 w-96 h-96 bg-cyber-accent/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-<div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-
-
-{/* Main Container */}
-
-<div className="container max-w-6xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-
-{/* Left Side: Copy */}
-
-<div className="space-y-8 text-center md:text-left order-2 md:order-1">
-
-<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyber-accent/30 bg-cyber-accent/5 text-cyber-accent text-xs font-mono font-bold tracking-widest uppercase">
-
-<span className="relative flex h-2 w-2">
-
-<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-accent opacity-75"></span>
-
-<span className="relative inline-flex rounded-full h-2 w-2 bg-cyber-accent"></span>
-
-</span>
-
-System Online
-
-</div>
-
-
-<h1 className="text-4xl md:text-6xl font-bold leading-tight">
-
-Optimize for <br />
-
-<span className="text-gradient">Machine Perception</span>
-
-</h1>
-
-
-<p className="text-lg text-cyber-dim leading-relaxed max-w-lg mx-auto md:mx-0">
-
-NeuroRank utilizes a swarm of autonomous AI agents to parse your DOM just like Google's crawler. Uncover semantic gaps invisible to human auditors.
-
-</p>
-
-
-
-<ul className="space-y-4 text-sm text-gray-300 font-mono">
-
-<li className="flex items-center gap-3">
-
-<div className="text-cyber-accent"><Icons.Zap /></div>
-
-<span>Real-time Semantic Analysis</span>
-
-</li>
-
-<li className="flex items-center gap-3">
-
-<div className="text-cyber-accent"><Icons.Brain /></div>
-
-<span>Entity Recognition Engine</span>
-
-</li>
-
-<li className="flex items-center gap-3">
-
-<div className="text-cyber-accent"><Icons.Terminal /></div>
-
-<span>Core Web Vitals Simulation</span>
-
-</li>
-
-</ul>
-
-</div>
-
-
-
-{/* Right Side: The App */}
-
-<div className="order-1 md:order-2">
-
-<div className="glass-panel rounded-2xl p-1 shadow-2xl transition-all duration-500 min-h-[500px] flex flex-col relative overflow-hidden">
-
-{/* Decorative top bar */}
-
-<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyber-accent to-transparent opacity-50"></div>
-
-
-<div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
-
-{status === 'idle' && (
-
-<AuditForm onSubmit={handleStartScan} />
-
-)}
-
-
-{status === 'scanning' && (
-
-<TerminalSimulation onComplete={handleScanComplete} />
-
-)}
-
-
-
-{status === 'complete' && (
-
-<SuccessView email={data.email} onReset={handleReset} />
-
-)}
-
-</div>
-
-</div>
-
-
-{/* Decorative elements behind the card */}
-
-<div className="absolute -inset-1 bg-gradient-to-r from-cyber-accent to-blue-600 rounded-2xl blur opacity-20 -z-10"></div>
-
-</div>
-
-</div>
-
-</div>
-
-);
-
-};
-
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(<App />);
-
-</script>
-
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- Icons ---
+        const Icons = {
+            Brain: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.97-3.284"/><path d="M17.97 14.716A4 4 0 0 1 16 18"/></svg>,
+            CheckCircle: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
+            Terminal: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>,
+            Zap: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+            Search: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>,
+            Lock: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
+            Graph: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        };
+
+        // --- Constants ---
+        // PASTE YOUR N8N URL HERE
+        const WEBHOOK_URL = "https://placeholder-webhook.com/submit"; 
+
+        const SIMULATION_LOGS = [
+            "Initializing Cited.ai Crawler...",
+            "Resolving target entity...",
+            "Fetching DOM structure...",
+            "Validating Schema.org/JSON-LD...",
+            "[ANALYSIS] Checking NAP Consistency...",
+            "Querying Perplexity Web Index...",
+            "Simulating ChatGPT-5 Response...",
+            "Querying Google Knowledge Graph API...",
+            "Calculating Hallucination Risk Score...",
+            "Compiling Competitor Matrix...",
+            "Rendering PDF Visibility Report...",
+            "Finalizing payload..."
+        ];
+
+        // --- Components ---
+
+        // 1. Audit Form Component
+        const AuditForm = ({ onSubmit }) => {
+            const [formData, setFormData] = useState({ url: '', keyword: '', email: '' });
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                onSubmit(formData);
+            };
+
+            return (
+                <div className="animate-fade-in w-full">
+                    <div className="mb-8 text-center sm:text-left">
+                        <h2 className="text-2xl font-bold text-white mb-2">Initialize Visibility Check</h2>
+                        <p className="text-cyber-dim text-sm">See if AI models recommend your brand.</p>
+                    </div>
+                    
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="space-y-1">
+                            <label className="text-xs font-mono text-cyber-accent uppercase tracking-wider">Website link</label>
+                            <div className="relative group">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-dim group-focus-within:text-cyber-accent transition-colors">
+                                    <Icons.Search />
+                                </div>
+                                <input 
+                                    required 
+                                    type="url" 
+                                    placeholder="https://example.com"
+                                    className="w-full bg-cyber-dark/50 border border-white/10 text-white rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-cyber-accent focus:ring-1 focus:ring-cyber-accent transition-all placeholder-gray-600 font-mono text-sm"
+                                    value={formData.url}
+                                    onChange={(e) => setFormData({...formData, url: e.target.value})}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-1">
+                            <label className="text-xs font-mono text-cyber-accent uppercase tracking-wider">Keyword</label>
+                            <div className="relative group">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-dim group-focus-within:text-cyber-accent transition-colors">
+                                    <Icons.Zap />
+                                </div>
+                                <input 
+                                    required 
+                                    type="text" 
+                                    placeholder="e.g. 'SaaS Analytics'"
+                                    className="w-full bg-cyber-dark/50 border border-white/10 text-white rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-cyber-accent focus:ring-1 focus:ring-cyber-accent transition-all placeholder-gray-600 font-mono text-sm"
+                                    value={formData.keyword}
+                                    onChange={(e) => setFormData({...formData, keyword: e.target.value})}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-1">
+                            <label className="text-xs font-mono text-cyber-accent uppercase tracking-wider">Report Recipient</label>
+                            <div className="relative group">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-dim group-focus-within:text-cyber-accent transition-colors">
+                                    <Icons.Lock />
+                                </div>
+                                <input 
+                                    required 
+                                    type="email" 
+                                    placeholder="you@company.com"
+                                    className="w-full bg-cyber-dark/50 border border-white/10 text-white rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-cyber-accent focus:ring-1 focus:ring-cyber-accent transition-all placeholder-gray-600 font-mono text-sm"
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                />
+                            </div>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            className="w-full bg-cyber-accent hover:bg-cyber-glow text-cyber-dark font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2"
+                        >
+                            <Icons.Terminal />
+                            <span>RUN VISIBILITY AUDIT</span>
+                        </button>
+                    </form>
+                    
+                    <p className="mt-4 text-xs text-center text-cyber-dim">
+                        Free tier limited to 1 report per day.
+                    </p>
+                </div>
+            );
+        };
+
+        // 2. Terminal Simulation Component
+        const TerminalSimulation = ({ onComplete }) => {
+            const [logs, setLogs] = useState([]);
+            const scrollRef = useRef(null);
+
+            useEffect(() => {
+                let currentIndex = 0;
+                const intervalId = setInterval(() => {
+                    if (currentIndex < SIMULATION_LOGS.length) {
+                        setLogs(prev => [...prev, SIMULATION_LOGS[currentIndex]]);
+                        currentIndex++;
+                    } else {
+                        clearInterval(intervalId);
+                        // Simulate network request here
+                        if (WEBHOOK_URL && !WEBHOOK_URL.includes("placeholder")) {
+                             // Real Fetch call would go here if integrated directly
+                        }
+                        setTimeout(onComplete, 1500); 
+                    }
+                }, 600); 
+
+                return () => clearInterval(intervalId);
+            }, [onComplete]);
+
+            useEffect(() => {
+                if (scrollRef.current) {
+                    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+                }
+            }, [logs]);
+
+            return (
+                <div className="w-full h-full flex flex-col animate-fade-in">
+                    <div className="bg-gray-900 rounded-t-lg p-3 flex items-center gap-2 border-b border-gray-800">
+                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span className="ml-2 text-xs text-gray-400 font-mono">cited_cli — v2.5.0</span>
+                    </div>
+                    <div 
+                        ref={scrollRef}
+                        className="flex-1 bg-black/80 p-6 font-mono text-sm overflow-y-auto terminal-scroll rounded-b-lg border-x border-b border-white/10 h-[350px]"
+                    >
+                        {logs.map((log, index) => (
+                            <div key={index} className="mb-2 text-cyber-accent/90">
+                                <span className="text-gray-500 mr-2">[{new Date().toLocaleTimeString()}]</span>
+                                <span className="mr-2">➜</span>
+                                {log}
+                            </div>
+                        ))}
+                        <div className="animate-pulse-fast text-cyber-accent">_</div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 3. Success Component
+        const SuccessView = ({ email, onReset }) => {
+            return (
+                <div className="text-center animate-fade-in flex flex-col items-center justify-center h-full py-10">
+                    <div className="w-20 h-20 bg-cyber-accent/10 rounded-full flex items-center justify-center mb-6 border border-cyber-accent/50 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                        <div className="text-cyber-accent">
+                             <Icons.CheckCircle />
+                        </div>
+                    </div>
+                    <h2 className="text-3xl font-bold text-white mb-2">Report Dispatched</h2>
+                    <p className="text-cyber-dim mb-8 max-w-xs mx-auto">
+                        The LLM Visibility Report has been compiled. Your report PDF will be sent to <span className="text-cyber-accent font-mono">{email}</span> in the next 3 minutes.
+                    </p>
+                    <button 
+                        onClick={onReset}
+                        className="bg-transparent border border-white/20 hover:border-cyber-accent hover:text-cyber-accent text-white px-8 py-3 rounded-lg transition-all font-mono text-sm"
+                    >
+                        AUDIT ANOTHER BRAND
+                    </button>
+                </div>
+            );
+        };
+
+        // --- Main App Component ---
+        const App = () => {
+            const [status, setStatus] = useState('idle'); 
+            const [data, setData] = useState(null);
+
+            const handleStartScan = (formData) => {
+                setData(formData);
+                setStatus('scanning');
+                
+                // Actual Webhook Trigger
+                if (WEBHOOK_URL && !WEBHOOK_URL.includes("placeholder")) {
+                    fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    }).catch(err => console.error("Webhook Error:", err));
+                }
+            };
+
+            const handleScanComplete = () => {
+                setStatus('complete');
+            };
+
+            const handleReset = () => {
+                setStatus('idle');
+                setData(null);
+            };
+
+            return (
+                <div className="min-h-screen relative flex items-center justify-center p-4 md:p-8">
+                    {/* Background Elements */}
+                    <div className="absolute inset-0 bg-grid z-0"></div>
+                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyber-accent/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+                    {/* Main Container */}
+                    <div className="container max-w-6xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        
+                        {/* Left Side: Copy */}
+                        <div className="space-y-8 text-center md:text-left order-2 md:order-1">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyber-accent/30 bg-cyber-accent/5 text-cyber-accent text-xs font-mono font-bold tracking-widest uppercase">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-accent opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyber-accent"></span>
+                                </span>
+                                13 reports generated
+                            </div>
+                            
+                            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                                Will AI Models <br />
+                                <span className="text-gradient">Recommend Your Business?</span>
+                            </h1>
+                            
+                            <p className="text-lg text-cyber-dim leading-relaxed max-w-lg mx-auto md:mx-0">
+                                Search is changing. Cited.ai simulates how Large Language Models (ChatGPT, Gemini, Perplexity) perceive your business.
+                            </p>
+
+                            <ul className="space-y-4 text-sm text-gray-300 font-mono">
+                                <li className="flex items-center gap-3">
+                                    <div className="text-cyber-accent"><Icons.Zap /></div>
+                                    <span>LLM Search Appearance Check</span>
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <div className="text-cyber-accent"><Icons.Brain /></div>
+                                    <span>Knowledge Graph Validation</span>
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <div className="text-cyber-accent"><Icons.Graph /></div>
+                                    <span>Competitor Citation Matrix</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Right Side: The App */}
+                        <div className="order-1 md:order-2">
+                            <div className="glass-panel rounded-2xl p-1 shadow-2xl transition-all duration-500 min-h-[500px] flex flex-col relative overflow-hidden">
+                                {/* Decorative top bar */}
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyber-accent to-transparent opacity-50"></div>
+                                
+                                <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
+                                    {status === 'idle' && (
+                                        <AuditForm onSubmit={handleStartScan} />
+                                    )}
+                                    
+                                    {status === 'scanning' && (
+                                        <TerminalSimulation onComplete={handleScanComplete} />
+                                    )}
+
+                                    {status === 'complete' && (
+                                        <SuccessView email={data.email} onReset={handleReset} />
+                                    )}
+                                </div>
+                            </div>
+                            
+                            {/* Decorative elements behind the card */}
+                            <div className="absolute -inset-1 bg-gradient-to-r from-cyber-accent to-blue-600 rounded-2xl blur opacity-20 -z-10"></div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
-
-
 </html>
